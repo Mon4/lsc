@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: copy-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: copy-nfs
+        image: busybox
+        command: ["sh", "-c", "echo '<html><body><h1>Sample Content</h1></body></html>' > /mnt/index.html"]
+        volumeMounts:
+        - name: site-data
+          mountPath: /mnt
+      restartPolicy: Never
+      volumes:
+      - name: site-data
+        persistentVolumeClaim:
+          claimName: test-dynamic-volume-claim

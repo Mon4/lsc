@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: aws-cli
+  name: aws-cli
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: aws-cli
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: aws-cli
+    spec:
+      containers:
+      - image: aws-cli
+        name: aws-cli
+        imagePullPolicy: Never
+        resources: {}
+        ports:
+          - containerPort: 3000
+status: {}
